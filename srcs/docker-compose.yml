@@ -1,0 +1,45 @@
+services:
+  mariadb:
+    container_name: mariadb
+    networks:
+      - wordpress
+    build : /requirements/mariadb
+    env_file:
+      - .env
+    volumes:
+      -mariadb:/var/lib/mysql/
+  wordpress:
+    container_name: wordpress
+    networks:
+      - wordpress
+    build: /requirements/wordpress
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    volumes:
+      -wordpress:/var/www/html
+  nginx:
+    container_name: nginx
+    networks:
+      - wordpress
+    env_file:
+      - .env
+    depends_on:
+      - wordpress
+
+volumes:
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      device: /home/chagilan/data/wordpress
+      o: bind
+      type: none
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      device: /home/chagilan/data/mariadb
+      o: bind
+      type: none
