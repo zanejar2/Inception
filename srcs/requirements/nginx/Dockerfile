@@ -6,8 +6,6 @@ RUN apt-get install nginx -y
 
 RUN apt-get install openssl -y
 
-COPY ./tools/index.html /var/www/html
-
 COPY ./conf/nginx.conf etc/nginx/conf.d
 
 RUN chmod 755 /var/www/html
