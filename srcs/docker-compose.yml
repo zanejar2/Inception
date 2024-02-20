@@ -10,7 +10,7 @@ services:
       - mariadb_volume:/var/lib/mysql
     expose:
       - 3306
-    # restart: on-failure
+    restart: on-failure
 
   wordpress:
     container_name: wordpress
@@ -25,7 +25,7 @@ services:
       - wordpress_volume:/var/www/html
     expose:
       - 9000
-    # restart: on-failure
+    restart: on-failure
 
   nginx:
     container_name: nginx
@@ -40,7 +40,7 @@ services:
       - 443:443
     volumes:
       - wordpress_volume:/var/www/html
-    # restart: on-failure
+    restart: on-failure
 
 volumes:
   wordpress_volume:

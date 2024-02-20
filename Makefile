@@ -13,5 +13,6 @@ down :
 
 clean:
 	docker system prune -af
+	# docker volume rm $(docker volume ls -q)
 	sudo rm -rf /home/chagilan/data/wordpress
 	sudo rm -rf /home/chagilan/data/mariadb
